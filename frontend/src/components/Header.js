@@ -10,7 +10,7 @@ function Header({ email, signOut, openBurger }) {
   function openBurger() {
     setIsActiveBurger(!isActiveBurger);
   }
-
+  
   return (
     <header className={isActiveBurger ? "header header_type_active" : "header"}>
       <img src={logo} alt="Логотип сайта" className="logo" />
@@ -34,7 +34,7 @@ function Header({ email, signOut, openBurger }) {
         <Route
           path="/"
           element={
-            <d>
+            <div>
               <div
                 className={
                   isActiveBurger
