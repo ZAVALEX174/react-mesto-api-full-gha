@@ -1,3 +1,4 @@
+import React from "react";
 import LogAndRegPopup from "./LogAndRegPopup";
 import { useFormAndValidation } from "./useFormAndValidation";
 
