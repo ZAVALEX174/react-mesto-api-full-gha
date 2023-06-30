@@ -11,12 +11,12 @@ function Main({
   onCardDelete,
   onCardLike,
   cards,
-}) { 
+}) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <>
+    <div>
       <main>
         <section className="section profile container">
           <div className="profile__user">
@@ -54,7 +54,7 @@ function Main({
           </ul>
         </section>
       </main>
-    </>
+    </div>
   );
 }
 
