@@ -52,7 +52,7 @@ function EditProfilePopup({
       onSubmit={handleSubmit}
       isLoading={isLoading}
       children={
-        <>
+        <div>
           <input
             id="input-name"
             type="text"
@@ -86,7 +86,7 @@ function EditProfilePopup({
             className="popup__error popup__error_visible"
           />
          
-        </>
+        </div>
       }
     />
   );

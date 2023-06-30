@@ -37,7 +37,7 @@ function EditAvatarPopup({
       isLoading={isLoading}
       submitBtnLoading="Обновление..."
       children={
-        <>
+        <div>
           <input
             className="popup__input popup__info popup__info_avatar"
             id="link-avatar"
@@ -52,7 +52,7 @@ function EditAvatarPopup({
             className="popup__error popup__error_visible"
             id="link-avatar-error"
           />
-        </>
+        </div>
       }
     />
   );

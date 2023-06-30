@@ -50,7 +50,7 @@ function AddPlacePopup({
       onSubmit={handleSubmit}
       isLoading={isLoading}
       children={
-        <>
+        <div>
           <input
             id="input-title"
             type="text"
@@ -81,7 +81,7 @@ function AddPlacePopup({
             id="input-link-error"
             className="popup__error popup__error_visible"
           />
-        </>
+        </div>
       }
     />
   );

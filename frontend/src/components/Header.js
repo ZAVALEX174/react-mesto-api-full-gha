@@ -34,7 +34,7 @@ function Header({ email, signOut, openBurger }) {
         <Route
           path="/"
           element={
-            <>
+            <div>
               <div
                 className={
                   isActiveBurger
@@ -59,7 +59,7 @@ function Header({ email, signOut, openBurger }) {
                 <span className="header__burger-line"></span>
                 <span className="header__burger-line"></span>
               </button>
-            </>
+            </div>
           }
         />
       </Routes>
