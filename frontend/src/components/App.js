@@ -283,7 +283,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentCardContext.Provider value={setCards}>
-        <>
+        <div>
           <div className="page">
             <Header email={email} signOut={signOut} />
             <Routes>
@@ -378,7 +378,7 @@ function App() {
               onCloseOverlay={closePopupWithClickOnOwerlay}
             />
           </div>
-        </>
+        </div>
       </CurrentCardContext.Provider>
     </CurrentUserContext.Provider>
   );
