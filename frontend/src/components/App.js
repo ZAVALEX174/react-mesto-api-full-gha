@@ -1,25 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Main from "./Main";
-import PopupWithForm from "./PopupWithForm";
-import ImagePopup from "./ImagePopup";
-import api from "../utils/Api";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { useEffect, useState } from "react";
-import EditProfilePopup from "./EditProfilePopup";
-import EditAvatarPopup from "./EditAvatarPopup";
-import AddPlacePopup from "./AddPlacePopup";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import { CurrentCardContext } from "../contexts/CurrentCardContext";
-import Register from "./Register";
-import Login from "./Login";
-import { ProtectedRoute } from "./ProtectedRoute";
-import InfoTooltip from "./InfoTooltip";
-import { register, authorize, getContent } from "../utils/auth";
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Main from './Main';
+import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
+import api from '../utils/Api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useEffect, useState } from 'react';
+import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { CurrentCardContext } from '../contexts/CurrentCardContext';
+import Register from './Register';
+import Login from './Login';
+import { ProtectedRoute } from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
+import { register, authorize, getContent } from '../utils/auth';
 // eslint-disable-next-line no-unused-vars
-import useFormAndValidation from "./useFormAndValidation";
+import useFormAndValidation from './useFormAndValidation';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -44,10 +44,10 @@ function App() {
   //состояние регистрации
   const [message, setMessage] = useState({
     status: false,
-    text: "",
+    text: '',
   });
   //email авторизированного пользователя
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
 
@@ -57,16 +57,16 @@ function App() {
     const { password, email } = formValues;
     authorize(password, email)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
-        navigate("/", { replace: true });
+        navigate('/', { replace: true });
         setEmail(email);
       })
       .catch((res) => {
-        if (res === "Ошибка: 401") {
+        if (res === 'Ошибка: 401') {
           setMessage({
             status: false,
-            text: "Аккаунт не зарегистрирован",
+            text: 'Аккаунт не зарегистрирован',
           });
         } else {
           setMessage({
@@ -89,14 +89,14 @@ function App() {
       .then(() => {
         setMessage({
           status: true,
-          text: "Вы успешно зарегистрировались!",
+          text: 'Вы успешно зарегистрировались!',
         });
-        navigate("/sign-in", { replace: true });
+        navigate('/sign-in', { replace: true });
       })
       .catch(() => {
         setMessage({
           status: false,
-          text: "Что-то пошло не так! Попробуйте ещё раз.",
+          text: 'Что-то пошло не так! Попробуйте ещё раз.',
         });
       })
       .finally(() => {
@@ -108,16 +108,17 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, []);
+  }, [tokenCheck]); // удалить tokencheck
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function tokenCheck() {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem('jwt');
     if (jwt) {
       getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
           setEmail(res.data.email);
-          navigate("/", { replace: true });
+          navigate('/', { replace: true });
         })
         .catch((err) => {
           console.log(err);
@@ -262,35 +263,35 @@ function App() {
 
   // Закрытие по кнопке Esc:
   function closePopupWithEsc(evt) {
-    if (evt.key === "Escape") {
+    if (evt.key === 'Escape') {
       closeAllPopups();
     }
   }
 
   // Закрытие по owerLay:
   function closePopupWithClickOnOwerlay(evt) {
-    if (evt.target.classList.contains("popup_opened")) {
+    if (evt.target.classList.contains('popup_opened')) {
       closeAllPopups();
     }
   }
 
   // функция выхода
   function signOut() {
-    localStorage.removeItem("jwt");
-    navigate("/sign-in");
+    localStorage.removeItem('jwt');
+    navigate('/sign-in');
     setLoggedIn(false);
-    setEmail("");
+    setEmail('');
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentCardContext.Provider value={setCards}>
         <div>
-          <div className="page">
+          <div className='page'>
             <Header email={email} signOut={signOut} />
             <Routes>
               <Route
-                path="/"
+                path='/'
                 element={
                   <ProtectedRoute
                     component={Main}
@@ -307,7 +308,7 @@ function App() {
               />
 
               <Route
-                path="/sign-up"
+                path='/sign-up'
                 element={
                   <Register
                     onRegister={handleRegister}
@@ -317,7 +318,7 @@ function App() {
                 }
               />
               <Route
-                path="/sign-in"
+                path='/sign-in'
                 element={<Login onLogin={handleLogin} />}
               />
             </Routes>
@@ -351,12 +352,11 @@ function App() {
 
             {/* Подтверждение удаления карточки: */}
             <PopupWithForm
-              title="Вы уверены?"
-              name=""
-              popup="confirm"
-              buttonText="Да"
-              onClose={closeAllPopups}
-            >
+              title='Вы уверены?'
+              name=''
+              popup='confirm'
+              buttonText='Да'
+              onClose={closeAllPopups}>
               {/* <button
             className="popup__button popup__save"
             type="submit"
