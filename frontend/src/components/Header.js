@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import logo from "../images/logo.svg";
 import { Route, Link, Routes, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
-function Header({ email, signOut, openBurger }) {
+function Header({ email, signOut }) {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
   const navigate = useNavigate();
 
-  function openBurger() {
+  function openBurgerMenu() {
     setIsActiveBurger(!isActiveBurger);
   }
 
@@ -54,7 +55,7 @@ function Header({ email, signOut, openBurger }) {
                     ? " header__burger_active header__burger"
                     : "header__burger"
                 }
-                onClick={openBurger}
+                onClick={ openBurgerMenu }
               >
                 <span className="header__burger-line"></span>
                 <span className="header__burger-line"></span>

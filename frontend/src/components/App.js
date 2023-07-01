@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -17,6 +18,7 @@ import Login from "./Login";
 import { ProtectedRoute } from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import { register, authorize, getContent } from "../utils/auth";
+// eslint-disable-next-line no-unused-vars
 import useFormAndValidation from "./useFormAndValidation";
 
 function App() {
