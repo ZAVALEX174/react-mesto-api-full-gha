@@ -108,7 +108,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, [tokenCheck]); // удалить tokencheck
+  }, []); // удалить tokencheck
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function tokenCheck() {
