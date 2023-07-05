@@ -28,6 +28,7 @@
       "react/react-in-jsx-scope": "off"
     }
   },
+  
   "browserslist": {
     "production": [
       ">0.2%",

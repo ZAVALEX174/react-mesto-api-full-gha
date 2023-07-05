@@ -1,6 +1,6 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
-// export const BASE_URL = "https://zuevmesto.students.nomoreparties.sbs";
-
+// export const BASE_URL = "https://auth.nomoreparties.co";
+//  export const BASE_URL = "https://api.zuevmesto.students.nomoreparties.sbs";
+export const BASE_URL = "http://localhost:3000";
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -42,7 +42,7 @@ export const getContent = (token) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
     },
   }).then((res) => {
     if (res.ok) {

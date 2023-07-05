@@ -7,6 +7,8 @@ const auth = (req, res, next) => {
 
   try {
     payload = jwt.verify(token, 'secretkey');
+    // eslint-disable-next-line no-console
+    console.log(payload);
   } catch (err) {
     throw new UnauthorizedError('Необходима авторизация');
     // next(err);

@@ -58,6 +58,8 @@ function App() {
     authorize(password, email)
       .then((res) => {
         localStorage.setItem('jwt', res.token);
+        console.log(localStorage)
+        // document.cookie = "jwt=" + res.token;
         setLoggedIn(true);
         navigate('/', { replace: true });
         setEmail(email);
@@ -106,13 +108,12 @@ function App() {
       });
   }
 
-  useEffect(() => {
-    tokenCheck();
-  }, []); // удалить tokencheck
+
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
+    console.log(jwt);
     if (jwt) {
       getContent(jwt)
         .then((res) => {
@@ -128,6 +129,10 @@ function App() {
       setLoadingBoolean(true);
     }
   }
+  
+  useEffect(() => {
+    tokenCheck();
+  }, [tokenCheck]); 
 
   useEffect(() => {
     if (loggedIn) {

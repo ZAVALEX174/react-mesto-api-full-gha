@@ -2,6 +2,7 @@
 const express = require('express');
 const { celebrate, Joi } = require('celebrate');
 const router = require('express').Router();
+// const cors = require('cors');
 const { login, createUser } = require('../controllers/users/users');
 const { auth } = require('../middlewares/auth');
 const { urlRegex } = require('../utils/urlRegex');
@@ -31,6 +32,7 @@ router.post(
       password: Joi.string().required(),
     }),
   }),
+  // cors(corsOptions),
   login,
 );
 

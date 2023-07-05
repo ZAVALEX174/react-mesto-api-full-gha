@@ -6,6 +6,7 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
+      credentials: "include",
       method: "GET",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -13,6 +14,7 @@ class Api {
 
   setUserProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
+      credentials: "include",
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -24,6 +26,7 @@ class Api {
 
   setAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
+      credentials: "include",
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -34,6 +37,7 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      credentials: "include",
       method: "GET",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -41,6 +45,7 @@ class Api {
 
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
+      credentials: "include",
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data), //name и link
@@ -49,6 +54,7 @@ class Api {
 
   removeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      credentials: "include",
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -56,6 +62,7 @@ class Api {
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      credentials: "include",
       method: "PUT",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -63,6 +70,7 @@ class Api {
 
   removeLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      credentials: "include",
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -81,13 +89,18 @@ class Api {
 
 const api = new Api({
   //baseUrl: `https://mesto.nomoreparties.co/v1/${cohort}`,
-  //baseUrl: `https://mesto.nomoreparties.co/v1/${cohort}`,
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
+  baseUrl: "http://localhost:3000",
+  // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
+  // baseUrl: "https://zuevmesto.students.nomoreparties.sbs",
   headers: {
     //authorization: token,
-    authorization: "2a1090a1-694e-4eb0-a8c1-0bf361e0cc8b",
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
-});
+}
+
+);
+console.log(api);
+
 
 export default api;
