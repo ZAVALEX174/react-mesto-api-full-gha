@@ -132,7 +132,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, []); // удалить tokenCheck
+  }, [tokenCheck]); // удалить tokenCheck
 
   useEffect(() => {
     if (loggedIn) {

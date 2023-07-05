@@ -62,7 +62,7 @@ class Api {
   }
 
   likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       credentials: 'include',
       method: "PUT",
       // headers: this._headers,
@@ -70,7 +70,7 @@ class Api {
   }
 
   removeLikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       credentials: 'include',
       method: "DELETE",
       // headers: this._headers,
