@@ -138,8 +138,9 @@ async function login(req, res, next) {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
       sameSite: true,
-    })
-      .send({ message: 'Успешная авторизация.' });
+    });
+    res.send({ token });
+    // .send({ message: 'Успешная авторизация.' });
     // если совпадает - вернуть пользователя
     // если нет - вернуть ошибку
   } catch (err) {

@@ -17,7 +17,8 @@ import Register from './Register';
 import Login from './Login';
 import { ProtectedRoute } from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
-import { register, authorize, getContent } from '../utils/auth';
+import * as auth from '../utils/auth';
+import { register, authorize } from '../utils/auth';
 // eslint-disable-next-line no-unused-vars
 import useFormAndValidation from './useFormAndValidation';
 
@@ -113,9 +114,8 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
-    console.log(jwt);
     if (jwt) {
-      getContent(jwt)
+      auth.getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
           setEmail(res.data.email);
@@ -129,10 +129,10 @@ function App() {
       setLoadingBoolean(true);
     }
   }
-  
+
   useEffect(() => {
     tokenCheck();
-  }, [tokenCheck]); 
+  }, []); // удалить tokenCheck
 
   useEffect(() => {
     if (loggedIn) {

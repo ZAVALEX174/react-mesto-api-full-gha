@@ -2,19 +2,20 @@ class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
+    this._authorization = options.headers.Authorization;
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      credentials: "include",
+      credentials: 'include',
       method: "GET",
-      headers: this._headers,
+      // headers: this._headers,
     }).then(this._checkResponse);
   }
 
   setUserProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
-      credentials: "include",
+      credentials: 'include',
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -26,7 +27,7 @@ class Api {
 
   setAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      credentials: "include",
+      credentials: 'include',
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -37,15 +38,15 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      credentials: "include",
+      credentials: 'include',
       method: "GET",
-      headers: this._headers,
+      // headers: this._headers,
     }).then(this._checkResponse);
   }
 
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
-      credentials: "include",
+      credentials: 'include',
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data), //name и link
@@ -54,25 +55,25 @@ class Api {
 
   removeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      credentials: "include",
+      credentials: 'include',
       method: "DELETE",
-      headers: this._headers,
+      // headers: this._headers,
     }).then(this._checkResponse);
   }
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      credentials: "include",
+      credentials: 'include',
       method: "PUT",
-      headers: this._headers,
+      // headers: this._headers,
     }).then(this._checkResponse);
   }
 
   removeLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      credentials: "include",
+      credentials: 'include',
       method: "DELETE",
-      headers: this._headers,
+      // headers: this._headers,
     }).then(this._checkResponse);
   }
 
@@ -93,8 +94,7 @@ const api = new Api({
   // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
   // baseUrl: "https://zuevmesto.students.nomoreparties.sbs",
   headers: {
-    //authorization: token,
-    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    // 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 }

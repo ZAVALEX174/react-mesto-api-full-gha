@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
+/* eslint-disable comma-dangle */
+/* eslint-disable semi */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable quotes */
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+// require('dotenv').config();
 
-
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const router = require('./routes');
@@ -15,17 +20,9 @@ const { PORT = 3000 } = process.env;
 const DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb';
 
 const app = express();
-// const cors = require('cors');
 app.use(express.json());
-// app.use(cors({ origin: ['http://localhost:3010'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3001', 'http://localhost:3000'], credentials: true, maxAge: 3600 }));
 
-// app.use(cors());
-
-// // настраиваем `CORS`
-// const corsOptions = {
-//   origin: 'https://example.com',
-//   optionSuccessStatus: 200, // для старых браузеров и SmartTV
-// };
 app.use(helmet());
 
 mongoose
@@ -53,5 +50,5 @@ app.use(handleError);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`App started on port ${PORT}!`);
+  console.log(`App started on port ${PORT}!+-`);
 });
