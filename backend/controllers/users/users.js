@@ -112,33 +112,21 @@ async function login(req, res, next) {
   try {
     // вытащить email и password
     const { email, password } = req.body;
-
     // проверить существует ли пользователь с таким email
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
-      throw new UnauthorizedError('Неверные данные для входа');
-      // res.status(VALIDATION_ERROR).json({ message: 'Неверные данные' });
-    }
-    // проверить совпадает ли пароль
+      throw new UnauthorizedError('Неверные данные для входа'); // res.status(VALIDATION_ERROR).json({ message: 'Неверные данные' });
+    } // проверить совпадает ли пароль
     const hasRightPassword = await bcrypt.compare(password, user.password);
-
     if (!hasRightPassword) {
       throw new UnauthorizedError(' Неверные данные для входа');
       // res.status(VALIDATION_ERROR).json({ message: 'Неверные данные' });
     }
-
     const token = jwt.sign(
-      {
-        _id: user._id,
-      },
+      { _id: user._id },
       'secretkey',
     );
-
-    res.cookie('jwt', token, {
-      maxAge: 3600000 * 24 * 7,
-      httpOnly: true,
-      sameSite: true,
-    });
+    res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true });
     res.send({ token });
     // .send({ message: 'Успешная авторизация.' });
     // если совпадает - вернуть пользователя

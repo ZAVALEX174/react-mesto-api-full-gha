@@ -10,7 +10,9 @@ class Api {
       credentials: 'include',
       method: "GET",
       // headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   setUserProfile(data) {
@@ -22,7 +24,9 @@ class Api {
         name: data.name,
         about: data.about,
       }),
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   setAvatar(data) {
@@ -33,7 +37,9 @@ class Api {
       body: JSON.stringify({
         avatar: data.avatar,
       }),
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   getInitialCards() {
@@ -41,7 +47,9 @@ class Api {
       credentials: 'include',
       method: "GET",
       // headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   addCard(data) {
@@ -50,7 +58,9 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data), //name и link
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   removeCard(cardId) {
@@ -58,7 +68,9 @@ class Api {
       credentials: 'include',
       method: "DELETE",
       // headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   likeCard(cardId) {
@@ -66,7 +78,9 @@ class Api {
       credentials: 'include',
       method: "PUT",
       // headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   removeLikeCard(cardId) {
@@ -74,7 +88,9 @@ class Api {
       credentials: 'include',
       method: "DELETE",
       // headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => {
+      return this._checkResponse(res); //.then(this._checkResponse);
+    });
   }
 
   _checkResponse(res) {
@@ -97,9 +113,7 @@ const api = new Api({
     // 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
-}
-
-);
+});
 console.log(api);
 
 
