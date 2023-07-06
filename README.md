@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.57.242
+IP 158.160.57.242
 
 Frontend https://zuevmesto.students.nomoreparties.sbs
 
