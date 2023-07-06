@@ -21,7 +21,7 @@ const DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb';
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: ['http://localhost:3001', 'http://localhost:3000'], credentials: true, maxAge: 3600 }));
+app.use(cors({ origin: ['http://localhost:3001', 'http://localhost:3000', 'zuevmesto.students.nomoreparties.sbs', 'api.zuevmesto.students.nomoreparties.sbs'], credentials: true, maxAge: 3600 }));
 
 app.use(helmet());
 
