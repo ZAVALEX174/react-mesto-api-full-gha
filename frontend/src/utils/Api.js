@@ -101,16 +101,10 @@ class Api {
   }
 }
 
-//const token = "2a1090a1-694e-4eb0-a8c1-0bf361e0cc8b";
-//const cohort = "cohort-62";
-
 const api = new Api({
-  //baseUrl: `https://mesto.nomoreparties.co/v1/${cohort}`,
   //baseUrl: "http://localhost:3000",
-  // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
   baseUrl: "https://api.zuevmesto.students.nomoreparties.sbs",
   headers: {
-    // 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });
