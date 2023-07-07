@@ -38,11 +38,13 @@ export const authorize = (password, email) => {
 
 export function getContent(token) {
   return fetch(`${BASE_URL}/users/me`, {
+    credentials: 'include',
+    mode: 'cors',
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     },
   }).then((res) => {
     if (res.ok) {

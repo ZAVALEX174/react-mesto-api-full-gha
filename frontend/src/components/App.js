@@ -60,7 +60,6 @@ function App() {
       .then((res) => {
         localStorage.setItem('jwt', res.token);
         console.log(localStorage)
-        // document.cookie = "jwt=" + res.token;
         setLoggedIn(true);
         navigate('/', { replace: true });
         setEmail(email);

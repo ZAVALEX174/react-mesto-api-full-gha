@@ -104,8 +104,11 @@ class Api {
 const api = new Api({
   //baseUrl: "http://localhost:3000",
   baseUrl: "https://api.zuevmesto.students.nomoreparties.sbs",
-  headers: {
-    "Content-Type": "application/json",
+  mode: 'cors',
+  credentials: 'include',
+   headers: {
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    'Content-Type': "application/json",
   },
 });
 console.log(api);

@@ -8,9 +8,10 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const cors = require('cors');
+const optionsCors = require('./middlewares/optionsCors');
 // require('dotenv').config();
 
-const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const router = require('./routes');
@@ -21,7 +22,8 @@ const DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb';
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: ['http://localhost:3001', 'zuevmesto.students.nomoreparties.sbs'], credentials: true, maxAge: 3600 }));
+// app.use(cors({ origin: ['http://localhost:3001', 'zuevmesto.students.nomoreparties.sbs'], credentials: true, maxAge: 3600 }));
+app.use('*', cors(optionsCors));
 
 app.use(helmet());
 
