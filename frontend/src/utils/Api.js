@@ -1,8 +1,8 @@
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
-    this._authorization = options.headers.Authorization;
+    // this._headers = options.headers;
+    // this._authorization = options.headers.Authorization;
   }
 
   //Получение токена из localStorage
