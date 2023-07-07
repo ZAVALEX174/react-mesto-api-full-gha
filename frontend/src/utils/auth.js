@@ -36,6 +36,26 @@ export const authorize = (password, email) => {
   });
 };
 
+// export function getContent(token) {
+//   return fetch(`${BASE_URL}/users/me`, {
+//     credentials: 'include',
+//     mode: 'cors',
+//     method: 'GET',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+//     },
+//   }).then((res) => {
+//     if (res.ok) {
+//       return res.json();
+//     }
+//     return Promise.reject(`Ошибка: ${res.status}`);
+//   });
+// };
+
+
+ // Проверка валидности токена
 export function getContent(token) {
   return fetch(`${BASE_URL}/users/me`, {
     credentials: 'include',
@@ -44,7 +64,7 @@ export function getContent(token) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      'Authorization': `Bearer ${token}`,
     },
   }).then((res) => {
     if (res.ok) {
@@ -54,20 +74,17 @@ export function getContent(token) {
   });
 };
 
-// export function getContent(token) {
-//   return fetch(`${BASE_URL}/users/me`, {
-//     credentials: 'include',
-//     mode: 'cors',
-//     method: 'GET',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${token}`,
-//     },
-//   }).then((res) => {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//     return Promise.reject(`Ошибка: ${res.status}`);
-//   });
-// };
+
+ // Проверка валидности токена
+//  validityCheck(token) {
+//   return fetch(`${this._baseUrl}/users/me`, {
+//       method: 'GET',
+//       headers: {
+//           'Accept': 'application/json',
+//           'Content-Type': 'application/json',
+//           authorization : `Bearer ${token}`
+//       },
+//       credentials: 'include'
+//   })
+//       .then(this._processResponseAuth);
+// }

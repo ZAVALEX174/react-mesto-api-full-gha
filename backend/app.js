@@ -25,8 +25,6 @@ app.use(express.json());
 // app.use(cors({ origin: ['http://localhost:3001', 'zuevmesto.students.nomoreparties.sbs'], credentials: true, maxAge: 3600 }));
 app.use('*', cors(optionsCors));
 
-app.use(helmet());
-
 mongoose
   .connect(DATABASE_URL)
   .then(() => {
@@ -37,6 +35,8 @@ mongoose
     console.log('Error on database connection');
     console.error(err);
   });
+
+app.use(helmet());
 
 app.use(cookieParser());
 

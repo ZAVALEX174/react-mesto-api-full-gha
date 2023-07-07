@@ -52,17 +52,22 @@ function App() {
 
   const navigate = useNavigate();
 
+  // ---------- Управление авторизацией  ----------
   function handleLogin(formValues, resetForm, setLoading) {
     setLoadingBoolean(false);
 
     const { password, email } = formValues;
-    authorize(password, email)
+    return auth.authorize(password, email)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
-        console.log(localStorage)
-        setLoggedIn(true);
-        navigate('/', { replace: true });
-        setEmail(email);
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          tokenCheck();
+          console.log(localStorage)
+          setLoggedIn(true);
+          navigate('/', { replace: true });
+          setEmail(email);
+
+        }
       })
       .catch((res) => {
         if (res === 'Ошибка: 401') {
@@ -85,15 +90,16 @@ function App() {
       });
   }
 
+  // ---------- Управление регистрацией ----------
   function handleRegister(formValues, resetForm, setLoading) {
     const { password, email } = formValues;
-    register(password, email)
+    return auth.register(password, email)
       .then(() => {
         setMessage({
           status: true,
           text: 'Вы успешно зарегистрировались!',
         });
-        navigate('/sign-in', { replace: true });
+        navigate('/signin', { replace: true });
       })
       .catch(() => {
         setMessage({
@@ -106,29 +112,31 @@ function App() {
         setLoading(false);
         setOpenInfoTooltip(true);
       });
+
   }
 
   function tokenCheck() {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      if (token) {
-        auth.getContent(token)
-          .then((res) => {
-            if (res) {
-              setLoggedIn(true);
-              setEmail(res.data.email);
-              navigate('/', { replace: true });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            setLoadingBoolean(true);
-          });
-      } else {
-        setLoadingBoolean(true);
-      }
+    let token = localStorage.getItem('token');
+
+    if (token) {
+      auth.getContent(token)
+        .then(res => res.data)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.data.email);
+            navigate('/', { replace: true });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingBoolean(true);
+        });
+    } else {
+      setLoadingBoolean(true);
     }
-  };
+  }
+
 
   useEffect(() => {
     tokenCheck();
@@ -136,6 +144,8 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
+      api._setToken();
+
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([data, cards]) => {
           setCurrentUser(data);
@@ -313,7 +323,7 @@ function App() {
               />
 
               <Route
-                path='/sign-up'
+                path='/signup'
                 element={
                   <Register
                     onRegister={handleRegister}
@@ -323,7 +333,7 @@ function App() {
                 }
               />
               <Route
-                path='/sign-in'
+                path='/signin'
                 element={<Login onLogin={handleLogin} />}
               />
             </Routes>
