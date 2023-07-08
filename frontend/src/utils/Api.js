@@ -11,7 +11,7 @@ class Api {
       method: "GET",
       // headers: this._headers,
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res);
     });
   }
 
@@ -25,7 +25,7 @@ class Api {
         about: data.about,
       }),
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -38,7 +38,7 @@ class Api {
         avatar: data.avatar,
       }),
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -48,7 +48,7 @@ class Api {
       method: "GET",
       // headers: this._headers,
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -59,7 +59,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(data), //name и link
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -69,7 +69,7 @@ class Api {
       method: "DELETE",
       // headers: this._headers,
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -79,7 +79,7 @@ class Api {
       method: "PUT",
       // headers: this._headers,
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -89,7 +89,7 @@ class Api {
       method: "DELETE",
       // headers: this._headers,
     }).then((res) => {
-      return this._checkResponse(res); //.then(this._checkResponse);
+      return this._checkResponse(res); 
     });
   }
 
@@ -101,20 +101,11 @@ class Api {
   }
 }
 
-//const token = "2a1090a1-694e-4eb0-a8c1-0bf361e0cc8b";
-//const cohort = "cohort-62";
-
 const api = new Api({
-  //baseUrl: `https://mesto.nomoreparties.co/v1/${cohort}`,
-  // baseUrl: "http://localhost:3000",
-  // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
  baseUrl: "https://api.zuevmesto.students.nomoreparties.sbs",
-  headers: {
-    // 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+  headers: {    
     "Content-Type": "application/json",
   },
 });
-console.log(api);
-
 
 export default api;

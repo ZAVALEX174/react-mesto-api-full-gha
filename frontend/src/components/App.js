@@ -58,9 +58,7 @@ function App() {
     const { password, email } = formValues;
     authorize(password, email)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
-        console.log(localStorage)
-        // document.cookie = "jwt=" + res.token;
+        localStorage.setItem('jwt', res.token);        
         setLoggedIn(true);
         navigate('/', { replace: true });
         setEmail(email);
@@ -133,7 +131,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, []); // удалить tokenCheck
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {

@@ -11,7 +11,6 @@ const auth = (req, res, next) => {
     console.log(payload);
   } catch (err) {
     throw new UnauthorizedError('Необходима авторизация');
-    // next(err);
   }
 
   req.user = payload;
