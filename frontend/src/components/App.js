@@ -52,22 +52,18 @@ function App() {
 
   const navigate = useNavigate();
 
-  // ---------- Управление авторизацией  ----------
   function handleLogin(formValues, resetForm, setLoading) {
     setLoadingBoolean(false);
 
     const { password, email } = formValues;
-    return auth.authorize(password, email)
+    authorize(password, email)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem('token', res.token);
-          tokenCheck();
-          console.log(localStorage)
-          setLoggedIn(true);
-          navigate('/', { replace: true });
-          setEmail(email);
-
-        }
+        localStorage.setItem('jwt', res.token);
+        console.log(localStorage)
+        // document.cookie = "jwt=" + res.token;
+        setLoggedIn(true);
+        navigate('/', { replace: true });
+        setEmail(email);
       })
       .catch((res) => {
         if (res === 'Ошибка: 401') {
@@ -90,10 +86,9 @@ function App() {
       });
   }
 
-  // ---------- Управление регистрацией ----------
   function handleRegister(formValues, resetForm, setLoading) {
     const { password, email } = formValues;
-    return auth.register(password, email)
+    register(password, email)
       .then(() => {
         setMessage({
           status: true,
@@ -112,31 +107,29 @@ function App() {
         setLoading(false);
         setOpenInfoTooltip(true);
       });
-
   }
 
   function tokenCheck() {
-    let token = localStorage.getItem('token');
-
-    if (token) {
-      auth.getContent(token)
-        .then(res => res.data)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setEmail(res.data.email);
-            navigate('/', { replace: true });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoadingBoolean(true);
-        });
-    } else {
-      setLoadingBoolean(true);
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        auth.getContent(token)
+          .then((res) => {
+            if (res) {
+              setLoggedIn(true);
+              setEmail(res.data.email);
+              navigate('/', { replace: true });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoadingBoolean(true);
+          });
+      } else {
+        setLoadingBoolean(true);
+      }
     }
-  }
-
+  };
 
   useEffect(() => {
     tokenCheck();
@@ -144,8 +137,6 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      api._setToken();
-
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([data, cards]) => {
           setCurrentUser(data);
@@ -293,7 +284,7 @@ function App() {
   // функция выхода
   function signOut() {
     localStorage.removeItem('jwt');
-    navigate('/signin');
+    navigate('/sign-in');
     setLoggedIn(false);
     setEmail('');
   }

@@ -18,17 +18,17 @@ function Header({ email, signOut }) {
       <img src={logo} alt="Логотип сайта" className="logo" />
       <Routes>
         <Route
-          path="/sign-up"
+          path="/signup"
           element={
-            <Link to={"/sign-in"} className="header__auth">
+            <Link to={"/signin"} className="header__auth">
               Войти
             </Link>
           }
         />
         <Route
-          path="/sign-in"
+          path="/signin"
           element={
-            <Link to={"/sign-up"} className="header__auth">
+            <Link to={"/signup"} className="header__auth">
               Регистрация
             </Link>
           }

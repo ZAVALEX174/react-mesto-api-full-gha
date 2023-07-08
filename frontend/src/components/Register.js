@@ -70,7 +70,7 @@ function Register({onRegister}) {
             </span>
           </fieldset>
         </LogAndRegPopup>
-        <Link to="/sign-in" className="authorization__link">
+        <Link to="/signin" className="authorization__link">
           Уже зарегистрированы? Войти
         </Link>
       </section>
