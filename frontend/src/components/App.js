@@ -284,7 +284,7 @@ function App() {
   // функция выхода
   function signOut() {
     localStorage.removeItem('jwt');
-    navigate('/sign-in');
+    navigate('/signin');
     setLoggedIn(false);
     setEmail('');
   }
