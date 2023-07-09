@@ -128,6 +128,7 @@ async function login(req, res, next) {
     }
     const token = jwt.sign(
       { _id: user._id },
+      // 'secret-key',
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
     );
     res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true });
