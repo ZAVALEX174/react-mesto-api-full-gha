@@ -2,7 +2,8 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+// const { NODE_ENV, JWT_SECRET } = process.env;
+const { JWT_SECRET } = process.env;
 const { User } = require('../../models/user');
 const { ConflictError } = require('../../errors/ConflictError');
 const { ValidationError } = require('../../errors/ValidationError');
