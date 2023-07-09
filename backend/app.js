@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+// require('dotenv').config();
 
 const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
