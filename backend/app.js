@@ -3,12 +3,12 @@
 /* eslint-disable semi */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable quotes */
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-// require('dotenv').config();
 
 const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
